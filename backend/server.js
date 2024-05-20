@@ -1,16 +1,16 @@
 import express from "express";
 import dotenv from "dotenv"; 
+
 import authRoutes from "./routes/auth.routes.js"
 import connectToMongoDB from "../db/connectToMongoDB.js";
-dotenv.config();
+
 
 const PORT = process.env.PORT || 5000;
-
 const app = express();
 
-app.get("/", (req, res) =>{
-    res.send("server is ready");
-})
+dotenv.config();
+
+app.use(express.json()); //to parse the incoming requests with JSON
 
 app.use("/api/auth", authRoutes);
 
