@@ -11,15 +11,35 @@ export const signup = async (req, res) =>{
         const user = await User.findOne({userName});
 
         if(user){
-            return res.status(400).json({error:"Username already exists"});
+            return res.status(400).json({error:"userName already exists"});
         }
 
         //Hash password here
-        const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${userName}`;
-        const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${userMame}`;
-    }
-    catch{
 
+        //avatar-placeholder
+        const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${userName}`;
+        const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${userName}`;
+    
+        
+        const newUser = new User({
+            fullName,
+            userName,
+            password,
+            gender,
+            profilepic: gender === "male" ? boyProfilePic : girlProfilePic
+        })
+    
+        await newUser.save();
+
+        res.status(201).json({
+            _id: newUser._id,
+            fullName: newUser.fullName,
+            userName: newUser.userName,
+            profilepic: newUser.profilePic
+        });
+    } catch (error) {
+        console.log("Error in signup controller -" + error.message);
+        res.status(500).json({ error:"Internal Server Error"});
     }
 }
 
