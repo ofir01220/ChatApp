@@ -25,8 +25,8 @@ export const signup = async (req, res) =>{
         const hashPassword = await bcrypt.hash(password, salt);
 
         //avatar-placeholder
-        const boyProfilePic = `https://api.dicebear.com/8.x/pixel-art/svg?seed=Jane`;
-        const girlProfilePic = `https://api.dicebear.com/8.x/pixel-art/svg?seed=John`;
+        const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${userName}`;
+        const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${userName}`;
         
         const newUser = new User({
             fullName,
