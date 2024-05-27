@@ -10,9 +10,9 @@ export const signup = async (req, res) =>{
         if(password !== confirmPassword){
             return res.status(400).json({error:"Passwords don't match"});
         }
-        if(!validatePassword(password)){
-            return res.status(400).json({error:"Password wasn't in the required format - at least 1 Upper, 1 special, 1 digit, total lenght > 8"});
-        }
+       // if(!validatePassword(password)){
+         //   return res.status(400).json({error:"Password wasn't in the required format - at least 1 Upper, 1 special, 1 digit, total lenght > 8"});
+        //}
         const user = await User.findOne({userName});
 
         if(user){
@@ -56,7 +56,7 @@ export const signup = async (req, res) =>{
     }
 }
 
-function validatePassword(password){
+/*function validatePassword(password){
     if (password.length < 8) {
         return false; // Password is too short
       }
@@ -76,7 +76,7 @@ function validatePassword(password){
       }
     
       return hasUpperCase && hasSpecialChar && hasNumber;
-}
+}*/
 
 export const login = async (req, res) =>{
     try{

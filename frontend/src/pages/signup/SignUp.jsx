@@ -1,24 +1,27 @@
 import GenderCheckbox from "./GenderCheckbox";
 import {Link} from 'react-router-dom';
 import { useState } from "react";
+import useSignUp from "../../hooks/useSignup";
 
 const SignUp = () => {
 
     const [inputs, setInputs] = useState({
         fullName: '',
-        username: '',
+        userName: '',
         password: '',
         confirmPassword: '',
         gender: '',
     })
 
+    const {loading, signup} = useSignUp();
     const handleChecboxChange = (gender) =>{
         setInputs({...inputs, gender: gender});
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit =  async (e) =>{
         e.preventDefault();
-        console.log(inputs);
+
+        await signup(inputs);
     }
 
   return (
@@ -36,11 +39,11 @@ const SignUp = () => {
                 </div>
                 <div>
                     <label className="label p-2">
-                        <span className="text-base label-text text-gray-300">UserName</span>
+                        <span className="text-base label-text text-gray-300">userName</span>
                     </label>
                     <input type="text" placeholder="johndoe" className="w-full input input-bordered h-10 bg-black text-gray-400"
-                    value={inputs.username}
-                    onChange={(e) => setInputs({...inputs,username: e.target.value})}
+                    value={inputs.userName}
+                    onChange={(e) => setInputs({...inputs,userName: e.target.value})}
                     />
                 </div>
                 <div>
@@ -69,7 +72,11 @@ const SignUp = () => {
                 </Link>
 
                 <div>
-                    <button className="btn btn-block btn-sm mt-2 border border-slate-700 bg-black text-gray-400 ">Sign Up</button>
+                    <button className="btn btn-block btn-sm mt-2 border border-slate-700 bg-black text-gray-400 "
+                    disabled={loading}
+                    >
+                        {loading ? <span className="loading loading-spinner"></span> : "Sign Up"}
+                    </button>
                 </div>
             </form>
         </div>
