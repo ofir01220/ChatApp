@@ -11,7 +11,7 @@ import userRoutes from "./routes/user.routes.js"
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import {app, server} from "./socket/socket.js"
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 const __dirname = path.resolve();
 
