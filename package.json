@@ -5,7 +5,7 @@
   "scripts": {
     "server": "nodemon backend/server.js",
     "start":"node backend/server.js",
-    "build":"chmod +x frontend && chmod +x backend && npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "build":"chmod +x frontend/node_modules/.bin/vite && chmod +x backend && npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "type": "module",
   "keywords": [],
