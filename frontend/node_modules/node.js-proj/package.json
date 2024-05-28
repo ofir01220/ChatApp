@@ -6,7 +6,7 @@
     "server": "nodemon backend/server.js",
     "start":"node backend/server.js",
     "prebuild": "chmod +x ./frontend/node_modules/.bin/vite",
-    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "type": "module",
   "keywords": [],
